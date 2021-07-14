@@ -1,3 +1,22 @@
 [
-  
+  {
+    "symbol": "ki",
+    "id": "kc-pi",
+    "name": "pi",
+    "arity": 0,
+    "keywords": ["pi"],
+    "tags": ["constant", "math", "number"],
+    "tagline": "pi (3.1415926).",
+    "description": "The mathematical constant pi."
+  },
+  {
+    "symbol": "Ṙ",
+    "id": "reverse",
+    "name": "Reverse",
+    "arity": 1,
+    "keywords": ["reverse", "flip"],
+    "tags": ["array"],
+    "tagline": "Reverse a list.",
+    "description": ""
+  }
 ]

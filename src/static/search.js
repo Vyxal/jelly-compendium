@@ -63,11 +63,11 @@ function update_search() {
   }
   window.history.replaceState("", "", "?" + query_args.join("&"));
 
-  var do_major_types = include.indexOf("atoms") != -1 || include.indexOf("quicks") != -1 || include.indexOf("syntax") != -1;
-  var do_minor_types = include.indexOf("nilads") != -1 || include.indexOf("monads") != -1 || include.indexOf("dyads") != -1;
+  var do_major_types = include.indexOf("elements") != -1 || include.indexOf("modifiers") != -1 || include.indexOf("structures") != -1;
+  var do_minor_types = include.indexOf("nilads") != -1 || include.indexOf("monads") != -1 || include.indexOf("dyads") != -1 || include.indexOf("triads") != -1;
 
   if (do_minor_types && !do_major_types) {
-    include.push("atoms");
+    include.push("elements");
   }
 
   var keywords = query.split(/\W+/).map(function(x) {
@@ -92,7 +92,7 @@ function update_search() {
     for (var property of element.classList) {
       if (property.startsWith("type-")) {
         var type = property.substring(5);
-        if (type == "atoms" || type == "quicks" || type == "syntax") {
+        if (type == "elements" || type == "modifiers" || type == "structures") {
           if (do_minor_types || do_major_types) {
             if (include.indexOf(type) == -1) {
               element.hidden = true;

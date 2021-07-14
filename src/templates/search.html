@@ -2,8 +2,7 @@
 
 {% block content %}
   <h3>Search</h3>
-  <p>Searching is implemented using a keyword searching system, so looking for keywords rather than trying to type sentences will give better results. This resource is most helpful if you already know what you are looking for and just want the characters to copy-paste. If you are having trouble finding a built-in, consider asking in <a href="https://chat.stackexchange.com/transcript/57815/jelly-hypertraining">Jelly Hypertraining</a>. If something does not appear under a certain keyword and you believe it should, consider opening an issue or pull request to the <a href="https://github.com/hyper-neutrino/jelly-tutorial">GitHub repository</a>. If you want to search by a specific character sequence in the description that isn't a keyword, consider using Ctrl-F on this page.</p>
-  <p><b>Note:</b> the arity of a quick in this table is the arity of the resulting link, <em>not</em> the number of links it consumes. "Variadic" means the resulting link's arity is internally <code>-1</code> and thus gets coerced depending on context, whereas "depends" means the resulting link has fixed arity but depends on the consumed links.</p>
+  <p>Searching is implemented using a keyword searching system, so looking for keywords rather than trying to type sentences will give better results. This resource is most helpful if you already know what you are looking for and just want the characters to copy-paste. If you are having trouble finding a built-in, consider asking in the <a href="https://chat.stackexchange.com/transcript/106764/vyxal">Vyxal chat room</a>. If something does not appear under a certain keyword and you believe it should, consider opening an issue or pull request to the <a href="https://github.com/Vyxal/vyxapedia">GitHub repository</a>. If you want to search by a specific character sequence in the description that isn't a keyword, consider using Ctrl-F on this page.</p>
 
   <ul class="collapsible">
     {% set ctypes = request.args.get("i", "").split() %}
@@ -19,16 +18,17 @@
               <br />
               <table class="search-option-table">
                 <tr>
-                  <td><label><input class="include" id="include-atoms" type="checkbox" data-category="atoms" {% if "atoms" in ctypes %} checked {% endif %} /><span><b>Atoms</b></span></label></td>
+                  <td><label><input class="include" id="include-elements" type="checkbox" data-category="elements" {% if "elements" in ctypes %} checked {% endif %} /><span><b>Elements</b></span></label></td>
                   <td><label><input class="include" id="include-nilads" type="checkbox" data-category="nilads" {% if "nilads" in ctypes %} checked {% endif %} /><span>Nilads</span></label></td>
                   <td><label><input class="include" id="include-monads" type="checkbox" data-category="monads" {% if "monads" in ctypes %} checked {% endif %} /><span>Monads</span></label></td>
-                  <td><label><input class="include" id="include-dyads" type="checkbox" data-category="dyads" {% if "dyads" in ctypes %} checked {% endif %} /><span>Dyads </span></label></td>
+                  <td><label><input class="include" id="include-dyads" type="checkbox" data-category="dyads" {% if "dyads" in ctypes %} checked {% endif %} /><span>Dyads</span></label></td>
+                  <td><label><input class="include" id="include-triads" type="checkbox" data-category="triads" {% if "triads" in ctypes %} checked {% endif %} /><span>Triads</span></label></td>
                 </tr>
                 <tr>
-                  <td><label><input class="include" id="include-quicks" type="checkbox" data-category="quicks" {% if "quicks" in ctypes %} checked {% endif %} /><span><b>Quicks</b></span></label></td>
+                  <td><label><input class="include" id="include-modifiers" type="checkbox" data-category="modifiers" {% if "modifiers" in ctypes %} checked {% endif %} /><span><b>Modifiers</b></span></label></td>
                 </tr>
                 <tr>
-                  <td><label><input class="include" id="include-syntax" type="checkbox" data-category="syntax" {% if "syntax" in ctypes %} checked {% endif %} /><span><b>Syntax</b></span></label></td>
+                  <td><label><input class="include" id="include-structures" type="checkbox" data-category="structures" {% if "structures" in ctypes %} checked {% endif %} /><span><b>Structures</b></span></label></td>
                 </tr>
               </table>
               <br />
@@ -81,12 +81,12 @@
         <th>Name</th>
         <th>Type</th>
         <th style="width:10%">Arity</th>
-        <th>Description (For monads, <code>z</code> is the argument; for dyads, <code>x</code> and <code>y</code> are the left and right arguments).</th>
+        <th>Description (<code>a</code> is the last popped element, then <code>b</code>, etc.)</th>
       </tr>
       {% for item in data %}
         <tr class="type-{{ item['type'] }}
-          {% if item['type'] == 'atoms' %}
-            type-{{ ['nilads', 'monads', 'dyads'][item['arity']] }}
+          {% if item['type'] == 'elements' %}
+            type-{{ ['nilads', 'monads', 'dyads', 'triads', 'variads'][item['arity']] }}
           {% endif %}
           {% for tag in item['tags'] %}
             tagged-{{ tag }}
@@ -100,14 +100,14 @@
         ">
           <td><a href="/{{ item['type'] }}/{{ item['id'] }}" target="_blank"><code>{{ item["symbol"] }}</code></a></td>
           <td><a href="/{{ item['type'] }}/{{ item['id'] }}" target="_blank">{{ item["name"] | safe }}</a></td>
-          {% if item["type"] == "atoms" %}
-            <td><a href="/beginners#terminology" target="_blank">Atom</a></td>
-            <td>{{ ["niladic", "monadic", "dyadic"][item["arity"]] }} ({{ item["arity"] }})</td>
-          {% elif item["type"] == "quicks" %}
-            <td><a href="/beginners#terminology" target="_blank">Quick</a></td>
-            <td>{{ ["niladic", "monadic", "dyadic", "variadic", "depends", "same"][item["arity"]] }}{% if item["arity"] >= 0 %} ({{ item["arity"] }}){% endif %}</td>
-          {% elif item["type"] == "syntax" %}
-            <td><a href="/beginners#jelly-syntax" target="_blank">Syntax</a></td>
+          {% if item["type"] == "elements" %}
+            <td><a href="/beginners#terminology" target="_blank">Elements</a></td>
+            <td>{{ ["niladic", "monadic", "dyadic", "triadic", "variadic"][item["arity"]] }} ({{ item["arity"] }})</td>
+          {% elif item["type"] == "modifiers" %}
+            <td><a href="/beginners#terminology" target="_blank">Modifiers</a></td>
+            <td></td>
+          {% elif item["type"] == "structures" %}
+            <td><a href="/beginners#jelly-syntax" target="_blank">Structures</a></td>
             <td></td>
           {% endif %}
           <td>{{ item["tagline"] | safe }}</td>

@@ -46,7 +46,7 @@ def serve_category(category, id):
 
 @app.route("/search")
 def serve_search():
-    return render_template("search.html", data = sorted([{**item, "type": category} for category, values in data.items() for item in values.values()], key = lambda x: list(map(codepage.find, x["symbol"]))), tags = sorted({tag for category in ["atoms", "quicks", "syntax"] for item in data[category].values() for tag in item["tags"]}), taginfo = tags)
+    return render_template("search.html", data = sorted([{**item, "type": category} for category, values in data.items() for item in values.values()], key = lambda x: list(map(codepage.find, x["symbol"]))), tags = sorted({tag for category in ["elements", "modifiers", "structures"] for item in data[category].values() for tag in item["tags"]}), taginfo = tags)
 
 @app.route("/resources")
 def serve_resources():
