@@ -19,7 +19,7 @@
   <button class="waves-effect green btn" onclick="format()">Format for SE</button>
   <button class="waves-effect green btn" onclick="cmc()">Format for CMC</button>
   <button class="waves-effect green btn" onclick="get_md5()">MD5</button>
-  <button class="waves-effect green btn" onclick="tio()">Try on TIO</button>
+  <button class="waves-effect green btn" onclick="tio()">Try on lyxal.pythonanywhere.com</button>
   <a href="/explain" target="_blank" id="explainlink" class="waves-effect green btn">Explain this code</a>
   <br />
   <br />
@@ -32,7 +32,7 @@
             <tr>
               {% for col in range(64) %}
                 <td>
-                  <span class="monospace crosshair key" onclick="type({{ codepage[row * 64 + col] | repr }})">{{ codepage[row * 64 + col] }}</span>
+                  <span class="monospace crosshair key" onclick="type({{ codepage[row * 64 + col] | repr }})">{{ codepage[row * 64 + col].replace("\n", "↵") }}</span>
                 </td>
               {% endfor %}
             </tr>
@@ -65,17 +65,19 @@
       </div>
     </li>
     <li>
+      <div class="collapsible-header"><i class="material-icons">flag</i><b id="args-label">Flags</b></div>
+      <div class="collapsible-body short">
+        <div class="input-field">
+          <textarea id="flags" class="materialize-textarea monospace tio-field"></textarea>
+        </div>
+      </div>
+    </li>
+    <li>
       <div class="collapsible-header"><i class="material-icons">input</i><b id="stdin-label">STDIN: 0 bytes</b></div>
       <div class="collapsible-body short">
         <div class="input-field">
           <textarea id="stdin" class="materialize-textarea monospace tio-field"></textarea>
         </div>
-      </div>
-    </li>
-    <li>
-      <div class="collapsible-header"><i class="material-icons">input</i><b id="args-label">Arguments (Niladic)</b></div>
-      <div id="argument-container" class="collapsible-body">
-        <div class="row center-contents"><div class="col s1"><button id="append-argument" class="waves-effect green btn add-argument"><i class="material-icons">add</i></button></div></div>
       </div>
     </li>
     <li class="active">
@@ -96,7 +98,7 @@
     </li>
   </ul>
 
-  This page's design is heavily inspired by <a href="https://tio.run/#">Try It Online!</a> and uses its API to run code. Full credit to Dennis for his amazing work on TIO.
+  This page's design is heavily inspired by <a href="https://tio.run/#">Try It Online!</a> and uses <a href="https://lyxal.pythonanywhere.com">lyxal.pythonanywhere.com</a>'s API to run code. Full credit to Dennis, lyxal, and the Vyxal development team for their work on TIO, Vyxal, and the Vyxal online interpreter.
 {% endblock %}
 
 {% block tail %}
