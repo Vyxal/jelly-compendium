@@ -4,6 +4,105 @@
   <h3>Beginners' Page</h3>
   <p>Welcome to the landing page for Vyxal beginners! This resource is intended to guide you from your very first encounter with Vyxal to a point where you can practice solving problems, self-study, and seek help through other channels.</p>
   <ul class="collapsible expandable">
+    <li id="terminology">
+      <div class="collapsible-header"><b>Conventions and Terminology</b></div>
+      <div class="collapsible-body">
+        <span><a href="#terminology"><i class="material-icons">link</i></a></span><br />
+        <p>A couple of terms and conventions are important to establish and will be used throughout much of this page and this entire website:</p>
+        <ul class="larger-text">
+          <li><b>Arity</b> refers to the number of arguments a function takes. A <em>niladic</em> function (bilad) takes zero (0) arguments, monads take one (1), dyads take two (2), and triads take three (3). There are also some elements whose arity is not fixed; they might consume the entire stack, or pop more or fewer elements depending on context.</li>
+          <li><b>Elements</b> are functions that apply to values on the stack. These pop any number of arguments (including zero) and push zero or more elements back to the stack. When dealing with multiple values, the first one will be the last one popped, so if there are three arguments, <code>a</code> will be the third-from-top, <code>b</code> will be the second-from-top, and <code>b</code> will the the top of the stack (TOS).</li>
+          <li><b>Modifiers</b> are prefix operators that modify the next element. These are not to be confused with elements that perform operators on function objects (since functions are first-class members in Vyxal).</li>
+          <li><b>Structures</b> are the syntactical components in Vyxal, including if-else statements, loops, lambdas, and even just strings.</li>
+        </ul>
+        <p>Vyxal is 0-indexed, meaning that the first index in a list is 0 and the last index is one smaller than the length. Index access in lists wraps around, so -1 refers to the last element, and index 4 in a length-3 list points to the second value.</p>
+      </div>
+    </li>
+    <li id="the-stack">
+      <div class="collapsible-header"><b>The Stack</b></div>
+      <div class="collapsible-body">
+        <span><a href="#the-stack"><i class="material-icons">link</i></a></span><br />
+        <p>Vyxal operates primarily on <a href="https://en.wikipedia.org/wiki/Stack_(abstract_data_type)">stacks</a>. The main program has a main stack and functions and lambdas have their own sub-stacks. The principle of a stack is that it is First-In-Last-Out (FILO) - much like a stack of any object in real life, first item placed onto the stack will be the last one retrieved, and retrieving an item will yield the most recent item. The terms are "push" (push an item = place an item onto the top of the stack) and "pop" (pop an item = remove and return the top of the stack). In Vyxal, if the pop operation is called on an empty stack, it attempts to read a line from STDIN, and otherwise returns <code>0</code>.</p>
+      </div>
+    </li>
+    <li id="syntax">
+      <div class="collapsible-header"><b>Literal Syntax</b></div>
+      <div class="collapsible-body">
+        <span><a href="#syntax"><i class="material-icons">link</i></a></span><br />
+        <p>Vyxal has six types of literals. They are all fairly self-explanatory with some examples:</p>
+        <ul class="larger-text">
+          <li><b>Number Literals</b> are created with <code>.0123456789</code>. Placing these adjacently will create one number literal, exactly as you would expect. To push multiple numbers, separate them with spaces or newlines; for example, <code>23 456</code> will push <code>23</code> and then <code>456</code>.</li>
+          <li><b>String Literals</b> are delimited by backticks (<code>`content goes here`</code>). Unless the <code>D</code> <a href="#flags">flag</a> is specified, if there are non-ASCII characters in the string, they will be paired together, converted to a base 160 number, and indexed into the dictionary. The element <a href="/elements/dictionary-compress"><code>øD</code> (Dictionary Compress)</a> will convert a string to its optimally dictionary-compressed version, which you can try online <a href="/tio#WyIiLCJgSGVsbG8sIFdvcmxkIWDDuEQiLCIiLCIiLCIiXQ==">here</a>.</li>
+          <li><b>Base 255 Compressed Number Literals</b> are delimited by <code>»</code>. Each character is indexed into the codepage (with <code>»</code> removed) and converted from base 255.</li>
+          <li><b>Base 255 Compressed String Literals</b> are delimited by <code>«</code>. The characters are converted just like base 255 compressed numbers are (but with <code>«</code> removed instead). Then, the number is converted into a base-27 number, and each digit is indexed into <code>&nbsp;etaoinshrdlcumwfgypbvkjxqz</code> (note the leading space).</li>
+          <li><b>Single-Character Literals</b> are written as <code>\x</code>, and push the character <code>x</code>. Vyxal does not distinguish between strings of length 1 and characters.</li>
+          <li><b>Two-Character Literals</b> are written as <code>‛xy</code>, and push the string <code>xy</code>.</li>
+        </ul>
+      </div>
+    </li>
+    <li id="first-program">
+      <div class="collapsible-header"><b>Your First Program</b></div>
+      <div class="collapsible-body">
+        <span><a href="#first-program"><i class="material-icons">link</i></a></span><br />
+        <p>Let's begin with a very simple program - Hello World. To get started, head over to the <a href="/tio">online Vyxal executor</a> on this site or <a href="https://lyxal.pythonanywhere.com">the official interpreter website</a>.</p>
+        <p>As mentioned above, Vyxal's strings are delimited by backticks. Thus, the most basic solution is this:</p>
+        <pre><code>`Hello, World!`</code></pre>
+        <p>If a string is not terminated at the end of the program, it is implicitly closed, so you can drop the last <code>`</code>. However, there is a shorter way to output <code>Hello, World</code> by using dictionary-compressed strings. Other than the 95 printable ASCII characters and the newline, all 160 other characters are indexed into the codepage (with the 96 other characters removed). Then, each pair is converted from base 169 and indexed into the dictionary. If the number is too large, the characters stay as-is. <code>Hello</code> is at index <code>4539</code>, which is <code>[28, 59]</code> in base 160, and thus we obtain the characters <code>ƈṡ</code>. Likewise, <code>World</code> is <code>ƛ€</code>. This leads to the following solution:</p>
+        <pre><code>`ƈṡ, ƛ€!`</code></pre>
+        <p>Again, the trailing <code>`</code> can be dropped. Note that Vyxal has the niladic element <a href="kc-hello-world"><code>kH</code> (k-constant: Hello, World!)</a> for this as well. (Be careful that compression is not always trivial - <code>withree</code> can be compressed as <code>`λ»ree`</code>, but it is shorter by one byte to do <code>`wi∧ḭ`</code>. The element <a href="/elements/dictionary-compress"><code>øD</code> (Dictionary Compress)</a> is guaranteed to find the optimal compressed form.)</p>
+      </div>
+    </li>
+    <li id="vectorization">
+      <div class="collapsible-header"><b>Vectorization</b></div>
+      <div class="collapsible-body">
+        <span><a href="#vectorization"><i class="material-icons">link</i></a></span><br />
+        <p>Before we continue, let's introduce vectorization, a common concept in array languages and golfing languages. Multiplying two lists together doesn't work in most languages (e.g. in Python, <code>[1, 2, 3] * [4, 5, 6]</code> will give an error). However, one behavior that would make sense is to multiply each corresponding pair of elements, so <code>[1, 2, 3] * [4, 5, 6]</code> could give <code>[4, 10, 18]</code>. Try the following online (<code>⟨1|2|3⟩</code> is a list - we'll get into the format later):</p>
+        <pre><code>⟨1|2|3⟩ ⟨4|5|6⟩ *</code></pre>
+        <p>Many built-ins in Vyxal vectorize. For example, <code>†</code> (logical NOT) will vectorize down to each individual value, so <code>⟨-1|0|1⟩ †</code> yields <code>⟨0|1|0⟩</code>, and <code>⟨⟨1|0⟩|⟨0|1⟩⟩ †</code> yields <code>⟨⟨0|1⟩|⟨1|0⟩⟩</code>. Some monads will explicitly say that they do not vectorize; for example, <code>∧</code> (logical AND) does not vectorize; <code>⟨1|0⟩ ⟨2|3⟩ ∧</code> returns <code>⟨2|3⟩</code>, not <code>⟨2|0⟩</code>.</p>
+        <p>Vectorization works relatively intuitively for dyads. If the left and right arguments are both single values, it just applies the function to the values. If one argument is a list and the other is a single value, it loops over the list side. For example, <code>⟨1|2|3⟩ 4 +</code> gives <code>⟨5|6|7⟩</code> and <code>1 ⟨2|3|4⟩ +</code> gives <code>⟨3|4|5⟩</code>. If both arguments are lists, then it applies to each corresponding pair. If necessary, the shorter list is padded with zeroes on the end (this behavior is different to Python's <code>zip</code>, which cuts off extra elements, and APL/J's vectorization, which errors if the axis lengths mismatch). For example, <code>⟨4|5|6⟩ ⟨2|3|4|5|6⟩ *</code> gives <code>⟨8|15|24|0|0⟩</code>.</p>
+        <p>Vectorization will make more sense with examples, and many built-ins work with many unique vectorization methods.</p>
+      </div>
+    </li>
+    <li id="structures">
+      <div class="collapsible-header"><b>Structures</b></div>
+      <div class="collapsible-body">
+        <span><a href="#structures"><i class="material-icons">link</i></a></span><br />
+        <p>Vyxal has several structures that are very similar to features found in conventional / practical programming languages, which was part of its design philosophy. We've already come across a structure, so let's start with that. Note that the closing side of each structure can usually be ommitted if it is at the end of the program.</p>
+        <ul class="larger-text">
+          <li><code>⟨...1 | ...2 | ...3 ...⟩</code> is a list. Formally, it runs each of its components (<code>...1</code>, <code>...2</code>, etc.) with an initially empty stack, and then joins the top of the stack of each item into a list. Any expression can be contained in each section, so for example, <code>⟨1 2 + | 3 4 *⟩</code> returns <code>⟨3|12⟩</code>. <code>⟨1 2 | 3 4⟩</code> will return <code>⟨2|4⟩</code> because only the top of the stack is preserved. These can be nested too; <code>⟨⟨1 | 2⟩ | 3 | ⟨4 | 5⟩⟩</code> works as expected.</li>
+          <li><code>[...1 | ...2]</code> is an if statement. It pops an element off the stack; if it is truthy, it runs <code>...1</code> and pushes the top of the sub-stack. If it is falsy and <code>...2</code> exists, it runs it and pushes the top of the stack. For example, <code>[1 2 + | 3 4]</code> will push <code>3</code> if the TOS is truthy and <code>4</code> otherwise, and <code>[1]</code> will push <code>1</code> if the TOS is truthy and nothing otherwise.</li>
+          <li><code>(...1 | ...2)</code> is a for loop statement. It pops an element off the stack, and then iterates through it each time. Here, <code>...1</code> is optional - if it is present, the result will be stored in the variable named <code>...1</code> each time. The context variable <a href="/elements/context-variable"><code>n</code></a> lets you retrieve the current value either way. For example, <code>⟨⟨1|2⟩|⟨3|4⟩⟩ (n(n,))</code> will output one through four on one line each - the outer loop pushes the current sub-list and runs another for loop, which pushes the inner value and <a href="/elements/print">prints (<code>,</code>)</a> it. <code>⟨⟨1|2⟩|⟨3|4⟩⟩ (a|n(←a,))</code> prints the following:
+            <pre><code>⟨1|2⟩
+⟨1|2⟩
+⟨3|4⟩
+⟨3|4⟩</code></pre>Here, the outer for loop uses <code>a</code> as its variable, pushes the context (which is still available even if we specify a variable name), and runs an inner for loop, which pushes <code>a</code> (the sub-list, not each individual value) and prints that instead.</li>
+          <li><code>{...1 | ...2}</code> is a while loop statement. Here, <code>...1</code> is optional. It is the while loop's condition, and if it is absent, the condition is instead just <code>1</code> (so the loop does not end by itself). Then, so long as the result of <code>...1</code> is truthy, <code>...2</code> will be run repeatedly.</li>
+          <li><code>@name:n|...;</code> is a user-defined function. This feature is quite unique to golfing languages, and is part of Vyxal's design concept. The name of the function must be one complete word and not contain any <code>a</code>s. <code>n</code> is the arity of the function; that is, how many elements should be popped from the caller's stack and put into the function's own stack. If the arity is <code>*</code>, it will pop one element and that will be the arity of the function. Finally, <code>...</code> is the body of the function. After the function is run, it pushes its entire stack back, not just the top value. Functions are called using the syntax <code>@name;</code>.</li>
+          <li><code>λarity|code;</code> is a user-defined lambda. Like lambdas / anonymous functions in other languages, this function does not have a name. Rather, it pushes a function object onto the stack directly. The arity is optional, and defaults to one. You can apply a lambda with <code>†</code>, so for example, <code>1 2 3 λ2|*; †</code> results in <code>6</code> on the top of the stack and <code>1</code> underneath, whereas <code>1 2 3 λ3|*; †</code> results in <code>2</code> as the only element in the stack.</li>
+        </ul>
+      </div>
+    </li>
+    <li id="context-variable">
+      <div class="collapsible-header"><b>The Context Variable</b></div>
+      <div class="collapsible-body">
+        <span><a href="#context-variable"><i class="material-icons">link</i></a></span><br />
+        <p>There is a special variable known as the <em>context variable</em>. More information about it is available on its element page <a href="/elements/context-variable">here</a>. Essentially, <code>n</code> pushes a value based on the current context. By default, the value is <code>0</code>. Within a function or lambda, its value is the list of arguments. In a for loop, it is the current iteration target. In a while loop, it is the specific result of the condition.</p>
+        <p>If there are nested contexts (a for loop inside a function, for example), the context variable defaults to the innermost context layer. <a href="/elements/context-down"><code>X</code> (Increase Context Level)</a> will go deeper by one level and <a href="/elements/context-up"><code>x</code> (Decrease Context Level)</a> will go shallower by one level.</p>
+      </div>
+    </li>
+    <li id="variable">
+      <div class="collapsible-header"><b>Variables</b></div>
+      <div class="collapsible-body">
+        <span><a href="#variables"><i class="material-icons">link</i></a></span><br />
+        <p>Unlike most golfing languages, Vyxal supports variable-length, readable variable names. A variable name can contain uppercase and lowercase letters and underscores. They are set with <a href="/structures/set-variable"><code>→</code> (Set Variable)</a> and retrieved with <a href="/structures/get-variable"><code>←</code> (Get Variable)</a>. For example:</p>
+        <pre><code>`string a` →a # a = "string a"
+`string b` →b # b = "string b"
+←a →temp      # temp = a
+←b →a         # a = b
+←temp →b      # b = temp (swapping the values of a and b)</code></pre>
+        <p>Notice from this example that Vyxal supports comments too - <code>#</code> will make the rest of the line (until the next newline) a comment, and will be completely ignored. You can try the above example <a href="/tio#WyIiLCJgc3RyaW5nIGFgIOKGkmEgIyBhID0gXCJzdHJpbmcgYVwiXG5gc3RyaW5nIGJgIOKGkmIgIyBiID0gXCJzdHJpbmcgYlwiXG7ihpBhIOKGknRlbXAgICAgICAjIHRlbXAgPSBhXG7ihpBiIOKGkmEgICAgICAgICAjIGEgPSBiXG7ihpB0ZW1wIOKGkmIgICAgICAjIGIgPSB0ZW1wIChzd2FwcGluZyB0aGUgdmFsdWVzIG9mIGEgYW5kIGIpXG5cbuKGkGEg4oaQYiBcIiAgICAgICAjIHB1c2ggYSBhbmQgYiwgYW5kIHBhaXIgdG9nZXRoZXIiLCIiLCIiLCIiXQ==">here</a>.</p>
+      </div>
+    </li>
     <li id="further-resources">
       <div class="collapsible-header"><b>Further Resources</b></div>
       <div class="collapsible-body">

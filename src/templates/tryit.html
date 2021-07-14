@@ -32,7 +32,7 @@
             <tr>
               {% for col in range(64) %}
                 <td>
-                  <span class="monospace crosshair key" onclick="type({{ codepage[row * 64 + col] | repr }})">{{ codepage[row * 64 + col].replace("\n", "↵") }}</span>
+                  <span class="monospace crosshair key" onclick="type({{ codepage[row * 64 + col] | repr }})">{{ codepage[row * 64 + col].replace("\n", "⏎") }}</span>
                 </td>
               {% endfor %}
             </tr>

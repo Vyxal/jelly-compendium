@@ -71,6 +71,12 @@ def serve_500(e):
 if __name__ == "__main__":
     import sys
     if "port" in sys.argv:
-        app.run(port = int(sys.argv[sys.argv.index("port") + 1]))
+        if "debug" in sys.argv:
+            app.run(port = int(sys.argv[sys.argv.index("port") + 1]), debug = True)
+        else:
+            app.run(port = int(sys.argv[sys.argv.index("port") + 1]))
     else:
-        app.run()
+        if "debug" in sys.argv:
+            app.run(debug = True)
+        else:
+            app.run()
