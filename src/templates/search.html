@@ -102,7 +102,7 @@
           <td><a href="/{{ item['type'] }}/{{ item['id'] }}" target="_blank">{{ item["name"] | safe }}</a></td>
           {% if item["type"] == "elements" %}
             <td><a href="/beginners#terminology" target="_blank">Elements</a></td>
-            <td>{{ ["niladic", "monadic", "dyadic", "triadic", "variadic"][item["arity"]] }} ({{ item["arity"] }})</td>
+            <td>{{ ["niladic", "monadic", "dyadic", "triadic", "variadic"][item["arity"]] }} {% if item["arity"] != -1 %} ({{ item["arity"] }}) {% endif %}</td>
           {% elif item["type"] == "modifiers" %}
             <td><a href="/beginners#terminology" target="_blank">Modifiers</a></td>
             <td></td>
