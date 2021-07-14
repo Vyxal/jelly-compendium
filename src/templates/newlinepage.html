@@ -1,9 +1,7 @@
 {% extends "layout.html" %}
 
 {% block content %}
-  <h3>Character Page - <code>¶</code></h3>
+  <h3>Character Page - Newline</h3>
 
-  <pre><code>PILCROW SIGN</code></pre>
-
-  <p>Pilcrows can be substituted for newlines (<code>\n</code>) - they translate to the same byte internally. It is recommended to use pilcrows in literals and newlines to separate links, as this makes code clearer. Outside of literals, a newline begins a new link (line of code). The last link is the main link, which is executed when the program is run.</p>
+  <p>Outside of literals, newlines function identically to spaces and do not carry any special meaning. However, they can make your code more readable (but less golfy, of course) and separate tokens - for example, <code>12</code> is the number literal twelve, and <code>1 2</code> is two literals, one and two.</p>
 {% endblock %}

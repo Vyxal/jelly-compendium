@@ -13,7 +13,7 @@
     <p>This is the literal digit <code>{{ char }}</code>. Multiple digits can be written together to form larger numbers or separated by spaces to form multiple tokens. Leaing zeroes form separate tokens; <code>00103</code> is equivalent to <code>0 0 103</code>. Numbers can be combined with <a href="/syntax/negative"><code>-</code> (Negative Number Literal)</a>, <a href="/syntax/decimal"><code>.</code> (Floating-Point Number Literal)</a>, <a href="/syntax/exponential"><code>ȷ</code> (Exponential Number Literal)</a>, and <a href="/syntax/complex"><code>ı</code> (Complex Number Literal)</a> to form more complex values.</p>
   {% endif %}
 
-  {% for category, key in [["Atoms", "atoms"], ["Quicks", "quicks"], ["Syntactical Components", "syntax"], ["Miscellaneous", "misc"]] %}
+  {% for category, key in [["Elements", "elements"], ["Modifiers", "modifiers"], ["Structures", "structures"], ["Miscellaneous", "misc"]] %}
     {% if data[key] %}
       <h5>{{ category }}</h5>
       <ul class="larger-text">
@@ -26,9 +26,9 @@
 
   {% if char not in "0123456789" %}
     {% if data["unused"] %}
-      <p>This character is currently not used by any atoms or quicks and does not have a special syntactical meaning. It is still used for things like string and number literals.</p>
+      <p>This character is currently not used by any elements, modifiers, or structures. It is still used for things like string and number literals.</p>
     {% elif not data["exact"] %}
-      <p>This character is used as a component in an atom or quick or has special syntactical meaning, but not on its own. Its behavior when not in an appropriate group may be undefined or cause errors.</p>
+      <p>This character is used as a component in an element, modifier, or structure, but not on its own. Its behavior when not in an appropriate group may be undefined or cause errors.</p>
     {% endif %}
   {% endif %}
 {% endblock %}

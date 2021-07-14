@@ -22,7 +22,7 @@ def serve_codepage():
 def serve_charpage(index):
     if index == 32:
         return render_template("spacepage.html")
-    if index == 127:
+    if index == 10:
         return render_template("newlinepage.html")
     if 0 <= index < 256:
         char = codepage[index]
@@ -38,7 +38,7 @@ def serve_misc(id):
 
 @app.route("/<category>/<id>")
 def serve_category(category, id):
-    if category not in ["atoms", "quicks", "syntax"]:
+    if category not in ["elements", "modifiers", "structures"]:
         abort(404)
     if id not in data[category]:
         abort(404)

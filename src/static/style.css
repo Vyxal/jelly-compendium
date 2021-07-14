@@ -132,16 +132,20 @@ kbd {
   color: #333;
   border: 1px solid #eef;
   border-radius: 2px;
-  background-color: #cde;
+  background-color: #ced;
   padding: 2px 5px;
 }
 
+a {
+  color: #0a6;
+}
+
 footer a {
-  color: #33c;
+  color: #080;
 }
 
 label {
-  color: #446;
+  color: #464;
 }
 
 table#search-results {

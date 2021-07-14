@@ -32,8 +32,8 @@
   </ul>
   If the script detects that the input looks like a string / list of strings in valid JS code (no extra symbols outside of string literals), it will attempt to <code>eval</code> it (to allow you to compress multiple strings). As long as you don't intentionally enter code that looks like a normal literal that will brick your browser, nothing abnormal should happen. If the string you want to use has Jelly string terminators or opening quotation marks, you will need to use <a href="/syntax/character-literal"><code>”</code> (Character Literal)</a>, as there is no way to insert them into a string literal. This compressor will output a valid literal but it will probably be shorter to concatenate the necessary characters together in a non-literal chain. There are often ways to shorten a string using built-in string constants but this compressor guarantees finding the shortest literal to represent your input.
   <br /><br />
-  <button id="toggle-live" class="waves-effect light-blue btn" onclick="toggle_live()">DISABLE LIVE COMPRESSION</button>
-  <button id="update" class="waves-effect light-blue btn" onclick="field_updated(document.getElementById('value'), true)" disabled>UPDATE</button>
+  <button id="toggle-live" class="waves-effect green btn" onclick="toggle_live()">DISABLE LIVE COMPRESSION</button>
+  <button id="update" class="waves-effect green btn" onclick="field_updated(document.getElementById('value'), true)" disabled>UPDATE</button>
   <br /><br />
   <div class="input-field">
     <textarea id="value" class="materialize-textarea monospace shortcut-field"></textarea>

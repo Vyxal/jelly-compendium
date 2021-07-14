@@ -68,6 +68,7 @@ $(document).ready(function() {
 });
 
 function compress(value, surround_list = false) {
+  return "TODO";
   var converted = "";
   for (var f of [trivial, char_list, double_char, compressed_string]) {
     var c = f(value);

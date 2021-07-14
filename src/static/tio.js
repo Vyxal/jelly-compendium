@@ -117,7 +117,7 @@ var counter = 0;
 function add_argument(e) {
   counter++;
   var outer_box = document.createElement("div");
-  outer_box.innerHTML = "<div class='col s1'><button class='waves-effect light-blue btn add-argument'><i class='material-icons'>add</i></button></div><div class='col s10 input-field argument-inline'><textarea id='argument-field-" + counter + "' class='materialize-textarea monospace argument'></textarea></div><div class='col s1'><button class='waves-effect light-blue btn rm-argument'><i class='material-icons'>remove</i></button></div>";
+  outer_box.innerHTML = "<div class='col s1'><button class='waves-effect green btn add-argument'><i class='material-icons'>add</i></button></div><div class='col s10 input-field argument-inline'><textarea id='argument-field-" + counter + "' class='materialize-textarea monospace argument'></textarea></div><div class='col s1'><button class='waves-effect green btn rm-argument'><i class='material-icons'>remove</i></button></div>";
   outer_box.classList = "argument-box row center-contents";
   $(outer_box).insertBefore(e.parentNode);
   $(outer_box.children[0]).click(function(e) {

@@ -14,21 +14,21 @@ with open("src/data/shortcuts.json", "r") as f:
     shortcuts = json.load(f)
 
 data = {
-    "atoms": {},
-    "quicks": {},
-    "syntax": {}
+    "elements": {},
+    "modifiers": {},
+    "structures": {}
 }
 
 charmap = {char: {
-    "atoms": [],
-    "quicks": [],
-    "syntax": [],
+    "elements": [],
+    "modifiers": [],
+    "structures": [],
     "misc": [],
     "unused": True,
     "exact": False
 } for char in codepage}
 
-for key in ["atoms", "quicks", "syntax"]:
+for key in ["elements", "modifiers", "structures"]:
     with open(f"src/data/{key}.json", "r") as f:
         category = json.load(f)
         for item in category:

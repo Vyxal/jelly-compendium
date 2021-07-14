@@ -2,7 +2,7 @@
 
 {% block content %}
   <h3>Code Page</h3>
-  <p>Jelly uses a custom <a href="https://en.wikipedia.org/wiki/SBCS">Single Byte Character Set (SBCS)</a>, so each character is one byte. The interpreter can accept a file in UTF-8 encoding it a file containing raw bytes that it decodes according to this codepage. You can click on a character for more information about it, as well as links to built-ins and other components that use that character.</p>
+  <p>Vyxal uses a custom <a href="https://en.wikipedia.org/wiki/SBCS">Single Byte Character Set (SBCS)</a>, so each character is one byte. The interpreter can accept a file in UTF-8 encoding it a file containing raw bytes that it decodes according to this codepage. You can click on a character for more information about it, as well as links to built-ins and other components that use that character.</p>
   <br />
 
   <center>
@@ -17,7 +17,7 @@
         <tr>
           <td><center>{{ "_" + "0123456789ABCDEF"[row] }}</center></td>
           {% for col in range(16) %}
-            <td class="codepage-td"><center><a href="/codepage/{{ row * 16 + col }}">{{ codepage[row * 16 + col].replace(" ", "&nbsp;") | safe }}</a></center></td>
+            <td class="codepage-td"><center><a href="/codepage/{{ row * 16 + col }}">{{ codepage[row * 16 + col].replace(" ", "&nbsp;").replace("\n", "↵") | safe }}</a></center></td>
           {% endfor %}
         </tr>
       {% endfor %}
@@ -26,13 +26,9 @@
 
   <br /><br />
 
-  <p>Here is a copy-paste friendly version of the entire codepage:</p>
-  <p><pre><code>{{ codepage[:128] }}
-{{ codepage[128:] }}</code></pre></p>
-
   <span id="the-codepage" data-codepage="{{ codepage }}" hidden></span>
 
-  <button type="button" class="waves-effect btn light-blue darken-1" onclick="copy_codepage()">
-    COPY (WITHOUT THE LINE BREAK)
+  <button type="button" class="waves-effect btn green darken-1" onclick="copy_codepage()">
+    COPY THE CODEPAGE
   </button>
 {% endblock %}

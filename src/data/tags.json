@@ -1,27 +1,3 @@
 {
-  "arithmetic": "Digraph monads beginning with <code>Æ</code> and dyads beginning with <code>æ</code> that perform some mathematical operation",
-  "arguments": "Built-ins that relate to link/chain arguments or command line arguments to the program.",
-  "array": "Built-ins that create, process, or manipulate arrays / lists of values.",
-  "base": "Built-ins that convert to, from, or between base systems. A base system is a numerical system under which arbitrary numerical values can be represented by a list of digits; for example, base 10 (decimal) or base 2 (binary).",
-  "bitwise": "Built-ins that manipulate the bits (binary representation) of its argument(s).",
-  "boolean": "Built-ins that process or manipulate boolean values, or are logical operators (as opposed to bitwise). In Jelly, booleans are represented as <code>0</code> and <code>1</code>.",
-  "separator": "Syntactical components that start new sub-chains within a link. See the <a href='/beginners#separators'>beginners' page</a> on chain separators for more information.",
-  "combinator": "Quicks whose sole purpose are to combine multiple links into one link without modifying the functionality, just the structure.",
-  "combinatorics": "The broad mathematical field of counting in relation to finite structures. As an unexhaustive list, enumeration, determining existence, and construction of structures satisfying some condition are part of combinatorics.",
-  "complex": "Built-ins that operate on or produce <a href='https://en.wikipedia.org/wiki/Complex_number'>complex numbers</a>.",
-  "constant": "Digraph nilads beginning with <code>Ø</code> that return some constant value.",
-  "hyper": "Quicks that always take exactly one link and alter its behavior in some way.",
-  "literal": "Literals are syntactical components that represent a fixed value hard-coded into the program.",
-  "math": "A broad categpry for built-ins that do something somewhat math-related.",
-  "matrix": "Built-ins that create, process, or manipulate 2D array / lists of values (they do not have to be rectangular).",
-  "miscellaneous": "Digraph monads beginning with <code>Œ</code> and dyads beginning with <code>œ</code> that perform some uncategorized operation",
-  "nth-link": "Niladic quicks that refer to another link (or itself) (sort of like calling function references).",
-  "number": "Built-ins that primarily manipulate numeric values (not including built-ins that require a number but primarily manipulate other data; for example, array indexing).",
-  "optimization": "Built-ins that relate to finding an extreme value or structure by some condition with some metric / criterion; for example, the maximum element, or the element with the most prime factors.",
-  "prime": "Built-ins that find primes or determine primality. An integer is prime if and only if it has exactly two factors (<code>1</code> and itself - so <code>1</code> is not a prime).",
-  "random": "Built-ins with non-determinstic / random behavior.",
-  "register": "The register is a global value that can be accessed and manipulated across the program.",
-  "stdio": "Built-ins that read from STDIN or output to STDOUT. This is usually not idiomatic and takes more bytes, but can be golfier in specific circumstances.",
-  "string": "Built-ins that perform string manipulation or formatting as their main focus.",
-  "vectorize": "Built-ins that vectorize over their arguments (discussed in the <a href='/beginners#vectorization'>beginners' tutorial</a>)."
+  
 }
