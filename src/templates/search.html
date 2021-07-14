@@ -110,7 +110,7 @@
             <td><a href="/beginners#jelly-syntax" target="_blank">Structures</a></td>
             <td></td>
           {% endif %}
-          <td>{{ item["tagline"] | safe }}</td>
+          <td>{{ item["tagline"] | md }}</td>
         </tr>
       {% endfor %}
     </table>

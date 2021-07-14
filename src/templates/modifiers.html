@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <h3>Modifier - <code>{{ data["symbol"] }}</code> - {{ data["name"] | safe }}</h3>
+  <p>Characters: {% for char in data["symbol"] %} {% if loop.index != 1 %}, {% endif %} {{ char | charlink }} {% endfor %}</p>
+  <p>Tags: {% for tag in data["tags"] %} {% if loop.index != 1 %}, {% endif %} {{ tag | taglink }} {% endfor %} {% if data["tags"] == [] %} (none) {% endif %}</p>
+  <h5>Functionality</h5>
+  <p>{{ data["tagline"] | md }}</p>
+  {% if data["description"] %}
+    <h5>Details</h5>
+    <p>{{ data["description"] | md }}</p>
+  {% endif %}
+{% endblock %}

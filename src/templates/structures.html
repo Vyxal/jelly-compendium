@@ -1,14 +1,14 @@
 {% extends "layout.html" %}
 
 {% block content %}
-  <h3>Syntax - <code>{{ data["symbol"] }}</code> - {{ data["name"] | safe }}</h3>
+  <h3>Structure - <code>{{ data["symbol"] }}</code> - {{ data["name"] | safe }}</h3>
   <p>Characters:{% for char in data["symbol"] %} {% if loop.index != 1 %}, {% endif %} {{ char | charlink }} {% endfor %}</p>
   <p>Tags: {% for tag in data["tags"] %} {% if loop.index != 1 %}, {% endif %} {{ tag | taglink }} {% endfor %} {% if data["tags"] == [] %} (none) {% endif %}</p>
-  <p>The <a href="/beginners#jelly-syntax">beginners' page</a> has a more thorough explanation of Jelly syntax and tokenization.</p>
+  <p>The <a href="/beginners#vyxal-syntax">beginners' page</a> has a more thorough explanation of Vyxal structures and syntax.</p>
   <h5>Functionality</h5>
-  <p>{{ data["tagline"] | safe }}</p>
+  <p>{{ data["tagline"] | md }}</p>
   {% if data["description"] %}
     <h5>Details</h5>
-    <p>{{ data["description"] | safe }}</p>
+    <p>{{ data["description"] | md }}</p>
   {% endif %}
 {% endblock %}

@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <h3>Element - <code>{{ data["symbol"] }}</code> - {{ data["name"] | safe }}</h3>
+  <p>Characters: {% for char in data["symbol"] %} {% if loop.index != 1 %}, {% endif %} {{ char | charlink }} {% endfor %}</p>
+  <p>Tags: {% for tag in data["tags"] %} {% if loop.index != 1 %}, {% endif %} {{ tag | taglink }} {% endfor %}</p>
+  <h5>Arity: {{ ["niladic", "monadic", "dyadic", "triadic", "variadic"][data["arity"]] }}</h5>
+  <p>
+    {% if data["arity"] == 0 %}
+      This element is niladic, which means it takes no arguments.
+    {% elif data["arity"] == 1 %}
+      This element is monadic, which means it takes one argument.
+    {% elif data["arity"] == 2 %}
+      This element is dyadic, which means it takes two arguments.
+    {% elif data["arity"] == 3 %}
+      This element is triadic, which means it takes three arguments.
+    {% elif data["arity"] == -1 %}
+      This element is variadic, which means the number of arguments it takes is not consistent.
+    {% else %}
+      This element's arity was not set to 0, 1, 2, 3, or -1. Elements can only have one of these arities, so please submit a bug report if you see this message.
+    {% endif %}
+  </p>
+  <h5>Functionality</h5>
+  <p>{{ data["tagline"] | md }}</p>
+  {% if data["description"] %}
+    <h5>Details</h5>
+    <p>{{ data["description"] | md }}</p>
+  {% endif %}
+{% endblock %}

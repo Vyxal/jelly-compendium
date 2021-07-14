@@ -6,7 +6,7 @@
     "arity": 0,
     "keywords": ["pi"],
     "tags": ["constant", "math", "number"],
-    "tagline": "pi (3.1415926).",
+    "tagline": "pi (`3.1415926`).",
     "description": "The mathematical constant pi."
   },
   {

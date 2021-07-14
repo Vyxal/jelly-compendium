@@ -1,4 +1,4 @@
-import json
+import json, markdown
 
 from jinja2.filters import FILTERS
 
@@ -56,3 +56,7 @@ FILTERS["taglink"] = taglink
 def _repr(item):
     return repr(item)
 FILTERS["repr"] = _repr
+
+def md(item):
+    return safe(markdown.markdown(item))
+FILTERS["md"] = md
