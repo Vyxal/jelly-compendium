@@ -60,10 +60,6 @@ def serve_beginners():
 def serve_tio():
     return render_template("tryit.html", codepage = codepage, shortcuts = shortcuts)
 
-@app.route("/explain")
-def serve_explain():
-    return render_template("explain.html")
-
 @app.errorhandler(404)
 def serve_404(e):
     return render_template("404.html"), 404

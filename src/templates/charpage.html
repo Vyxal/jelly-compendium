@@ -10,7 +10,7 @@
   {% endif %}
 
   {% if char in "0123456789" %}
-    <p>This is the literal digit <code>{{ char }}</code>. Multiple digits can be written together to form larger numbers or separated by spaces to form multiple tokens. Leaing zeroes form separate tokens; <code>00103</code> is equivalent to <code>0 0 103</code>. Numbers can be combined with <a href="/syntax/negative"><code>-</code> (Negative Number Literal)</a>, <a href="/syntax/decimal"><code>.</code> (Floating-Point Number Literal)</a>, <a href="/syntax/exponential"><code>ȷ</code> (Exponential Number Literal)</a>, and <a href="/syntax/complex"><code>ı</code> (Complex Number Literal)</a> to form more complex values.</p>
+    <p>This is the literal digit <code>{{ char }}</code>. Multiple digits can be written together to form larger numbers or separated by spaces to form multiple tokens. See the beginners' page on <a href="/beginners#vyxal-syntax">Vyxal's syntax</a> for more information.
   {% endif %}
 
   {% for category, key in [["Elements", "elements"], ["Modifiers", "modifiers"], ["Structures", "structures"], ["Miscellaneous", "misc"]] %}
