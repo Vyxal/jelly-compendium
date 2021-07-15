@@ -186,7 +186,3 @@ function get_md5() {
 function tio() {
   window.open(vyxal_permalink($("#header").val(), $("#code").val(), $("#footer").val(), $("#flags").val(), $("#stdin").val()));
 }
-
-function explain() {
-  alert("This feature is not implemented!");
-}
