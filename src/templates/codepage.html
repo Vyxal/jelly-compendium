@@ -10,12 +10,12 @@
       <tr>
         <td></td>
         {% for col in range(16) %}
-          <td><center>{{ "0123456789ABCDEF"[col] + "_" }}</center></td>
+          <td><center>_{{ "0123456789ABCDEF"[col] }}</center></td>
         {% endfor %}
       </tr>
       {% for row in range(16) %}
         <tr>
-          <td><center>{{ "_" + "0123456789ABCDEF"[row] }}</center></td>
+          <td><center>{{ "0123456789ABCDEF"[row] }}_</center></td>
           {% for col in range(16) %}
             <td class="codepage-td"><center><a href="/codepage/{{ row * 16 + col }}">{{ codepage[row * 16 + col].replace(" ", "&nbsp;").replace("\n", "⏎") | safe }}</a></center></td>
           {% endfor %}
