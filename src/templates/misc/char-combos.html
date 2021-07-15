@@ -22,9 +22,11 @@
       {% for index in range(0, shortcuts.items() | length, 4) %}
         <tr>
           {% for i in range(index, index + 4) %}
-            <td><code>{{ (shortcuts.items() | list)[i][0] }}</code></td>
-            <td><code>{{ (shortcuts.items() | list)[i][1] }}</code></td>
-            <td class="pad"></td>
+            {% if i < (shortcuts | length) %}
+              <td><code>{{ (shortcuts.items() | list)[i][0] }}</code></td>
+              <td><code>{{ (shortcuts.items() | list)[i][1] }}</code></td>
+              <td class="pad"></td>
+            {% endif %}
           {% endfor %}
         </tr>
       {% endfor %}
