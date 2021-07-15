@@ -1,5 +1,45 @@
 [
   {
+    "symbol": "¬",
+    "id": "logical-not-flat",
+    "name": "Logical NOT (Flat)",
+    "arity": 1,
+    "keywords": ["logical", "not", "flat", "nonvectorizing"],
+    "tags": ["logical", "non-vectorizing"],
+    "tagline": "`(a: any) → not a`",
+    "description": ""
+  },
+  {
+    "symbol": "∧",
+    "id": "logical-and-flat",
+    "name": "Logical AND (Flat)",
+    "arity": 2,
+    "keywords": ["logical", "and", "flat", "nonvectorizing"],
+    "tags": ["logical", "non-vectorizing"],
+    "tagline": "`(a: any, b: any) → a and b`",
+    "description": "If `a` is truthy, then return `b`; otherwise, return `a`."
+  },
+  {
+    "symbol": "⟑",
+    "id": "logical-and-reversed-flat",
+    "name": "Logical AND (Reversed, Flat)",
+    "arity": 2,
+    "keywords": ["logical", "and", "flat", "nonvectorizing", "reversed"],
+    "tags": ["logical", "non-vectorizing"],
+    "tagline": "`(a: any, b: any) → b and a`",
+    "description": "If `b` is truthy, then return `a`; otherwise, return `b`."
+  },
+  {
+    "symbol": "∨",
+    "id": "logical-or-flat",
+    "name": "Logical OR (Flat)",
+    "arity": 2,
+    "keywords": ["logical", "or", "flat", "nonvectorizing"],
+    "tags": ["logical", "non-vectorizing"],
+    "tagline": "`(a: any, b: any) → a or b`",
+    "description": "If `a` is truthy, then return `a`; otherwise, return `b`."
+  },
+  {
     "symbol": "ki",
     "id": "kc-pi",
     "name": "pi",

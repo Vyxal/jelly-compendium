@@ -4,7 +4,7 @@
   <h3>Structure - <code>{{ data["symbol"] }}</code> - {{ data["name"] | safe }}</h3>
   <p>Characters:{% for char in data["symbol"] %} {% if loop.index != 1 %}, {% endif %} {{ char | charlink }} {% endfor %}</p>
   <p>Tags: {% for tag in data["tags"] %} {% if loop.index != 1 %}, {% endif %} {{ tag | taglink }} {% endfor %} {% if data["tags"] == [] %} (none) {% endif %}</p>
-  <p>The <a href="/beginners#structures">beginners' page</a> has a more thorough explanation of Vyxal structures and syntax.</p>
+  <p>The <a href="/beginners#structures">beginners' page</a> has a general explanation of Vyxal structures and syntax.</p>
   <h5>Functionality</h5>
   <p>{{ data["tagline"] | md }}</p>
   {% if data["description"] %}

@@ -1,3 +1,18 @@
 [
-  
+  {
+    "symbol": "λ;",
+    "id": "lambda",
+    "name": "Lambda Function",
+    "tags": ["function"],
+    "tagline": "Create a lambda function (pushes an anonymous function to the stack).",
+    "description": "`λarity|code;` defines a lambda function with a given arity. `λcode;` sets a default arity of 1. When a lambda is applied with [`†` (Call Function Reference)](/elements/call-function-reference), it pops that many values from the current stack and places them on its stack in reverse order (the last popped element becomes the TOS). Then, the function body is run on that sub-stack. Finally, if the stack is non-empty, its top value gets pushed back to the stack in which the function was called; otherwise, the original TOS is pushed back."
+  },
+  {
+    "symbol": "ƛ;",
+    "id": "lambda-map",
+    "name": "Map Over Lambda",
+    "tags": ["function"],
+    "tagline": "Map an anonymous function over every element of the top of the stack.",
+    "description": "`ƛcode;` creates and automatically runs an anonymous function on each element. Do not use [`†` (Call Function Reference)](/elements/call-function-reference) as the map lambda automatically runs. Specifying an arity doesn't actually do anything; a map lambda will only receive one argument, the iteration element."
+  }
 ]
