@@ -166,7 +166,11 @@ function cmc() {
   document.location = url();
   var code = $("#code").val();
   var flags = $("#flags").val();
-  $("#stdout").val("Vyxal" + (flags.length ? " `" + flags + "`" : "") + ", " + code.length + " byte" + "s".repeat(code.length != 1) + ": `" + code.replaceAll("`", "\\`") + "` ([Try It Online!](" + document.location + "))").select().focus();
+  if (code.indexOf("\n") != -1) {
+    $("#stdout").val("Vyxal" + (flags.length ? " `" + flags + "`" : "") + ", " + code.length + " byte" + "s".repeat(code.length != 1) + ": [Try It Online!](" + document.location + ")").select().focus();
+  } else {
+    $("#stdout").val("Vyxal" + (flags.length ? " `" + flags + "`" : "") + ", " + code.length + " byte" + "s".repeat(code.length != 1) + ": `" + code.replaceAll("`", "\\`") + "` ([Try It Online!](" + document.location + "))").select().focus();
+  }
   updateAll();
   scroll();
 }
