@@ -58,5 +58,15 @@
     "tags": ["array"],
     "tagline": "Reverse a list.",
     "description": ""
+  },
+  {
+    "symbol": "øD",
+    "id": "null-dict-compress",
+    "name": "dict-compress",
+    "arity": 1,
+    "keywords": ["dictionary", "compress"],
+    "tags": ["compression", "string"],
+    "tagline": "Dictionary compression",
+    "description": "Optimally compress a string of English using words from the Vyxal dictionary."
   }
 ]
